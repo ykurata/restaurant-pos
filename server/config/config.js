@@ -11,15 +11,16 @@ module.exports = {
   development: {
     database: 'pos',
     username: 'restaurant_pos',
-    password: null,
+    password: 'password',
     host: '127.0.0.1',
     dialect: 'postgres'
   },
 
   test: {
     database: 'pos',
+    password: 'password',
     username: 'restaurant_pos',
-    password: null,
+    password: 'password',
     host: '127.0.0.1',
     dialect: 'postgres'
   },
