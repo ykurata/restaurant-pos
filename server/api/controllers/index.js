@@ -1,4 +1,4 @@
-const todos = require('./user');
+const user = require('./user');
 
 module.exports = {
   user,
