@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+require('dotenv').config();
 
 const User = require('../models').User;
 
@@ -27,14 +28,14 @@ module.exports = {
         name: newUser.username
       }
       // Create a token  
-      const token = await jwt.sign(payload, keys.secretOrKey, { expiresIn: 31556926 });
+      const token = await jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: 31556926 });
       if (token) {
         res.json({ success: true, token: token });
       } else {
         res.status(400).json({ error: "Sign up failed" });
       }
     } catch (err) {
-      res.status(400).json(err);
+      console.log(err);
     }
   },
 
@@ -64,7 +65,7 @@ module.exports = {
       };
 
       // Create a token  
-      const token = await jwt.sign(payload, keys.secretOrKey, { expiresIn: 31556926 });
+      const token = await jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: 31556926 });
       if (token) {
         res.json({ success: true, token: token });
       } else {
@@ -81,6 +82,16 @@ module.exports = {
       return res.status(200).json(users);
     } catch (err) {
       res.status(400).json(err);
+    }
+  },
+
+  async delete(req, res) {
+    try {
+      const user = await User.findOne({ where: { id: req.params.id } });
+      await user.destroy();
+      return res.status(200).json({ message: "deleted a user" });
+    } catch (err) {
+      res.status(200).json(err);
     }
   }
 }
