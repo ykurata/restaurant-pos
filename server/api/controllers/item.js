@@ -1,5 +1,3 @@
-const { getAll, delete } = require('./user');
-
 const Item = require('../models').Item;
 
 module.exports = {
