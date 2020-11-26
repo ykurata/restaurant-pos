@@ -8,7 +8,7 @@ module.exports = {
         size: req.body.size,
         price: req.body.price
       }
-      const item = await newItem.save();
+      const item = await Item.create(newItem);
       return res.status(200).json(item);
     } catch (err) {
       console.log(err);
