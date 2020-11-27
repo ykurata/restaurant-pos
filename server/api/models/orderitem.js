@@ -1,5 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
   const OrderItem = sequelize.define('OrderItem', {
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     itemId: {
       type: DataTypes.INTEGER,
       allowNull: false,
