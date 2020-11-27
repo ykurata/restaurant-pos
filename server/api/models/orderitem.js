@@ -13,5 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     }
   });
+  OrderItem.associate = function (models) {
+    OrderItem.hasMany(models.Item, { foreignKey: 'itemId', as: 'item' });
+  }
   return OrderItem;
 };
