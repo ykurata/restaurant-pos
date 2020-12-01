@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       orderItemId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.ARRAY(Sequelize.STRING)
       },
       price: {
         type: Sequelize.DECIMAL(10, 2),
