@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false
     },
-    idPaid: {
+    isPaid: {
       type: DataTypes.BOOLEAN,
       allowNull: false
     }
