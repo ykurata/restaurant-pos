@@ -25,6 +25,19 @@ module.exports = {
     }
   },
 
+  async getById(req, res) {
+    try {
+      const order = await Order.findOne({
+        where: { id: req.params.id }
+      });
+      if (order) {
+        return res.status(200).json(order);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
   async delete(req, res) {
     try {
       const order = await Order.findOne({ where: { id: req.params.id } });

@@ -11,7 +11,10 @@ module.exports = (sequelize, DataTypes) => {
     price: {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false
-    }
+    },
   });
+  // Item.associate = function (models) {
+  //   Item.belongsTo(models.OrderItem, { foreignKey: 'itemId', as: 'item' });
+  // }
   return Item;
 };

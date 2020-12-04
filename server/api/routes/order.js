@@ -6,6 +6,7 @@ const auth = require('./auth/auth');
 
 router.post("/", auth, orderController.create);
 router.get("/all", orderController.getAll);
+router.get("/get/:id", auth, orderController.getById);
 router.delete("/delete/:id", orderController.delete);
 
 module.exports = router;

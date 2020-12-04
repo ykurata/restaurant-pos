@@ -1,4 +1,5 @@
 const OrderItem = require('../models').OrderItem;
+const Item = require('../models').Item;
 
 module.exports = {
   async create(req, res) {
@@ -18,12 +19,21 @@ module.exports = {
 
   async getAll(req, res) {
     try {
-      const orderItems = await OrderItems.findAll({});
+      const orderItems = await OrderItem.findAll({
+        include: [
+          {
+            model: Item,
+            as: "item"
+          }
+        ]
+      });
+      console.log(orderItems)
       return res.status(200).json(orderItems);
     } catch (err) {
       res.status(400).json(err);
     }
   },
+
 
   async delete(req, res) {
     try {
