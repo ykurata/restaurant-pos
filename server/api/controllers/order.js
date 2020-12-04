@@ -1,6 +1,3 @@
-const { all } = require('sequelize/types/lib/operators');
-const { get } = require('./orderItem');
-
 const Order = require('../models/').Order;
 
 module.exports = {

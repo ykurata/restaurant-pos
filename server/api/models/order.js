@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     orderItemId: {
-      type: DataTypes.Array(DataTypes.INTEGER),
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
       allowNull: false,
     },
     price: {
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
   Order.associate = function (models) {
-    Order.hasMany(models.OrderItems, { foreignKey: 'orderItemId', onDelete: 'cascade' });
+    Order.hasMany(models.OrderItem, { foreignKey: 'orderItemId', onDelete: 'cascade' });
   }
   return Order;
 };
