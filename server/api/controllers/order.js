@@ -4,8 +4,9 @@ module.exports = {
   async create(req, res) {
     try {
       const order = {
-        orderItem: req.body.orderItem,
-        pirce: req.body.price,
+        userId: req.user,
+        orderItemId: req.body.orderItemId,
+        price: req.body.price,
         isPaid: req.body.isPaid
       }
       const newOrder = await Order.create(order);

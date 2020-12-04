@@ -17,8 +17,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     }
   });
-  Order.associate = function (models) {
-    Order.hasMany(models.OrderItem, { foreignKey: 'orderItemId', onDelete: 'cascade' });
-  }
+  // Order.associate = function (models) {
+  //   Order.hasMany(models.OrderItem, { foreignKey: 'orderItemId', onDelete: 'cascade' });
+  // }
   return Order;
 };

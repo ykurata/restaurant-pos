@@ -1,11 +1,11 @@
 const express = require('express');
-const { openStdin } = require('process');
 const router = express.Router();
 
 const orderItemController = require('../controllers').orderItem;
+const auth = require('./auth/auth');
 
-router.post('/', orderItemController.create);
-router.post('/all', orderItemController.get);
-router.post('/delete/:id', orderItemController.delete);
+router.post('/', auth, orderItemController.create);
+router.get('/all', orderItemController.getAll);
+router.delete('/delete/:id', auth, orderItemController.delete);
 
 module.exports = router;

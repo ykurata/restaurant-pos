@@ -1,6 +1,3 @@
-const { get } = require('http');
-const { create } = require('./item');
-
 const OrderItem = require('../models').OrderItem;
 
 module.exports = {
@@ -19,12 +16,12 @@ module.exports = {
     }
   },
 
-  async get(req, res) {
+  async getAll(req, res) {
     try {
-      const orderItems = await OrderItem.find({});
+      const orderItems = await OrderItems.findAll({});
       return res.status(200).json(orderItems);
     } catch (err) {
-      console.log(err);
+      res.status(400).json(err);
     }
   },
 
