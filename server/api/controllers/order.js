@@ -1,4 +1,5 @@
 const Order = require('../models/').Order;
+const OrderItem = require('../models').OrderItem;
 
 module.exports = {
   async create(req, res) {
@@ -18,7 +19,14 @@ module.exports = {
 
   async getAll(req, res) {
     try {
-      const orders = await Order.find({});
+      const orders = await Order.findAll({
+        include: [
+          {
+            model: OrderItem,
+            as: 'orderItem'
+          }
+        ]
+      });
       return res.status(200).json(orders);
     } catch (err) {
       console.log(err);
@@ -28,7 +36,13 @@ module.exports = {
   async getById(req, res) {
     try {
       const order = await Order.findOne({
-        where: { id: req.params.id }
+        where: { id: req.params.id },
+        include: [
+          {
+            model: OrderItem,
+            as: 'orderItem'
+          }
+        ]
       });
       if (order) {
         return res.status(200).json(order);

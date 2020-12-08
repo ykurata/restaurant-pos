@@ -17,22 +17,27 @@ module.exports = {
       return res.status(400).json(errors);
     }
     try {
-      const user = {
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
-      }
-      const newUser = await User.create(user);
-      const payload = {
-        id: newUser.id,
-        name: newUser.username
-      }
-      // Create a token  
-      const token = await jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: 31556926 });
-      if (token) {
-        res.json({ success: true, token: token });
+      const user = await User.findOne({ where: { email: req.body.email } });
+      if (user) {
+        return res.status(400).json({ error: "Email already exists!" });
       } else {
-        res.status(400).json({ error: "Sign up failed" });
+        const user = {
+          username: req.body.username,
+          email: req.body.email,
+          password: req.body.password
+        }
+        const newUser = await User.create(user);
+        const payload = {
+          id: newUser.id,
+          name: newUser.username
+        }
+        // Create a token  
+        const token = await jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: 31556926 });
+        if (token) {
+          res.json({ success: true, token: token });
+        } else {
+          res.status(400).json({ error: "Sign up failed" });
+        }
       }
     } catch (err) {
       console.log(err);
