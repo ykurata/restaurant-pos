@@ -2,6 +2,8 @@ const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 
+const userRoute = require('./api/routes/user');
+
 // Set up express app
 const app = express();
 
@@ -11,6 +13,9 @@ app.use(logger('dev'));
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+
+app.use('/user', userRoute);
 
 // send 404 if no other route matched
 app.use((req, res) => {
