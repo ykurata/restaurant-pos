@@ -28,6 +28,7 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
+    await queryInterface.removeColumn('Items', 'OrderId');
     await queryInterface.dropTable('Items');
   }
 };
