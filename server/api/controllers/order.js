@@ -3,6 +3,7 @@ const Order = require('../models').Order;
 const createOrder = async (req, res) => {
   try {
     const order = ({
+      userId: req.user,
       itemIds: req.body.itemIds,
       price: req.body.price
     });

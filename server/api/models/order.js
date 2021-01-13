@@ -11,14 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Order.hasMany(models.Item, { as: 'item-ids' })
     }
   };
   Order.init({
     userId: DataTypes.INTEGER,
     itemIds: DataTypes.ARRAY(DataTypes.INTEGER),
-    price: DataTypes.DECIMAL,
-    isPaid: DataTypes.BOOLEAN
+    price: DataTypes.DECIMAL(10, 2)
   }, {
     sequelize,
     modelName: 'Order',
