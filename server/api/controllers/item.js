@@ -4,7 +4,6 @@ const createItem = async (req, res) => {
   try {
     const newItem = {
       name: req.body.name,
-      size: req.body.size,
       price: req.body.price
     }
     const item = await Item.create(newItem);
@@ -29,7 +28,6 @@ const updateItem = async (req, res) => {
     if (item) {
       const updatedItem = await item.update({
         name: req.body.name,
-        size: req.body.size,
         price: req.body.price
       });
       return res.status(200).json(updatedItem);
