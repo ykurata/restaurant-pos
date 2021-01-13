@@ -3,7 +3,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 
 const userRoute = require('./api/routes/user');
-const itemRoute = require('./api/routes/item');
+//const itemRoute = require('./api/routes/item');
 
 // Set up express app
 const app = express();
@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/user', userRoute);
-app.use('/item', itemRoute);
+//app.use('/item', itemRoute);
 
 // send 404 if no other route matched
 app.use((req, res) => {
