@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 
 const userRoute = require('./api/routes/user');
 const itemRoute = require('./api/routes/item');
-const orderRoute = require('./api/routes/order');
+//const orderRoute = require('./api/routes/order');
 
 // Set up express app
 const app = express();
@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/user', userRoute);
 app.use('/item', itemRoute);
-app.use('/order', orderRoute);
+//app.use('/order', orderRoute);
 
 // send 404 if no other route matched
 app.use((req, res) => {
