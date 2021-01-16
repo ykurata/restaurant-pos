@@ -7,7 +7,6 @@ module.exports = function authentication(req, res, next) {
     if (!token) {
       return res.status(401).json({ error: "Token is no found" });
     }
-    console.log(token);
     jwt.verify(token, process.env.SECRET_KEY, function (err, decode) {
       if (err) {
         console.log(err);
